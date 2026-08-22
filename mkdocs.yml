@@ -1,0 +1,64 @@
+site_name: "Jakarta EE 12 Sandbox"
+
+repo_url: https://github.com/hantsy/jakartaee12-sandbox
+repo_name: hantsy/jakartaee12-sandbox
+
+theme:
+  name: material
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: pink
+      accent: pink
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - content.code.copy
+    - search.suggest
+    - navigation.expand
+    - navigation.indexes
+  icon:
+    repo: fontawesome/brands/git-alt
+
+copyright: Copyright &copy;2026 Hantsy
+extra:
+  social:
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/hantsy
+    - icon: fontawesome/brands/linkedin
+      link: https://linkedin.com/in/hantsy
+    - icon: fontawesome/brands/medium
+      link: https://medium.com/@hantsy
+    - icon: fontawesome/brands/github
+      link: https://github.com/hantsy
+
+markdown_extensions:
+  - meta
+  - toc:
+      toc_depth: 3
+      permalink: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+
+plugins:
+  - search
+  - git-revision-date
+
+nav:
+  - Home: index.md
+  - Faces: faces.md
+  - Servlet: servlet.md
+  - Persistence: persistence.md
+  - CDI: cdi.md
+  - Security: security.md

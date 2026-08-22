@@ -1,0 +1,30 @@
+name: Build hibernate
+
+on:
+  push:
+    paths:
+      - "hibernate/**"
+      - "pom.xml"
+    branches:
+      - master
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+
+jobs:
+  hibernate:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v6
+    - name: Set up JDK
+      uses: actions/setup-java@v5
+      with:
+        java-version: '25'
+        distribution: 'zulu'
+        cache: maven
+    - name: Build with Maven
+      run: |
+        cd hibernate
+        mvn -B -q clean test

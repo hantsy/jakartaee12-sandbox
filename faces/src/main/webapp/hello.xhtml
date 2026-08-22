@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core">
+<h:head>
+    <title>Hello, Faces 5.0!</title>
+</h:head>
+<h:body>
+    <h1>Say Hello to Faces 5.0</h1>
+    <h:form id="helloForm">
+        <h:outputLabel for="name" value="Name"/>
+        <h:inputText id="name" value="#{helloBean.name}" placeholder="Enter your name"/>
+        <h:message for="name"/>
+
+        <h:outputLabel for="status" value="Status"/>
+        <h:selectOneMenu id="status" value="#{helloBean.status}">
+            <f:selectItem itemLabel="Active" itemValue="ACTIVE"/>
+            <f:selectItem itemLabel="Inactive" itemValue="INACTIVE"/>
+            <f:selectItem itemLabel="Pending" itemValue="PENDING"/>
+        </h:selectOneMenu>
+        <h:message for="status"/>
+
+        <h:commandButton id="greet" value="Greet" action="#{helloBean.greet}">
+            <f:ajax execute="@form" render="@form"/>
+        </h:commandButton>
+
+        <h:messages id="messages" globalOnly="true"/>
+    </h:form>
+</h:body>
+</html>

@@ -1,0 +1,35 @@
+name: Build persistence
+
+on:
+  push:
+    paths:
+      - "persistence/**"
+      - "pom.xml"
+    branches:
+      - master
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+
+jobs:
+  persistence:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v6
+    - name: Set up JDK
+      uses: actions/setup-java@v5
+      with:
+        java-version: '25'
+        distribution: 'zulu'
+        cache: maven
+    - name: Build with Maven
+      run: |
+        cd persistence
+        mvn -B -q clean verify -Parq-glassfish-managed
+    - uses: actions/upload-artifact@v6
+      if: failure()
+      with:
+        name: server-log
+        path: persistence/target/glassfish*/glassfish/domains/domain1/logs/server.log
