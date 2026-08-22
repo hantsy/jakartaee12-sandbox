@@ -1,4 +1,4 @@
-package com.example;
+package com.example.interfaces.faces;
 
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.application.FacesMessage;

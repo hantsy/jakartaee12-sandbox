@@ -36,6 +36,7 @@
         <wsrs.version>4.0.0</wsrs.version>
         <validation.version>4.0.0-M1</validation.version>
         <annotation.version>3.0.0</annotation.version>
+        <nimbus-jose-jwt.version>10.9.1</nimbus-jose-jwt.version>
 
         <!-- Hibernate 8 implements Jakarta Persistence 4.0 -->
         <hibernate.version>8.0.0.Beta1</hibernate.version>
@@ -121,6 +122,11 @@
                 <groupId>org.glassfish.main.common</groupId>
                 <artifactId>glassfish-api</artifactId>
                 <version>${glassfish.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.nimbusds</groupId>
+                <artifactId>nimbus-jose-jwt</artifactId>
+                <version>${nimbus-jose-jwt.version}</version>
             </dependency>
 
             <!-- Hibernate -->

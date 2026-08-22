@@ -1,4 +1,4 @@
-package com.example;
+package com.example.interfaces.faces;
 
 import jakarta.faces.annotation.FacesConfig;
 

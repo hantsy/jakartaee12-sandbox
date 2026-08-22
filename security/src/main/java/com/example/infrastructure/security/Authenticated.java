@@ -1,4 +1,4 @@
-package com.example;
+package com.example.infrastructure.security;
 
 import jakarta.interceptor.InterceptorBinding;
 

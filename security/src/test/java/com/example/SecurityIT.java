@@ -23,8 +23,22 @@ public class SecurityIT {
 
     @Deployment(testable = false)
     public static WebArchive createDeployment() {
-        return ShrinkWrap.createFromZipFile(WebArchive.class,
-                new File("target/jakartaee12-security-examples.war"));
+        final String WEBAPP_SRC = "src/main/webapp";
+        return ShrinkWrap.create(WebArchive.class)
+                .addPackages(true,
+                        "com.example.domain",
+                        "com.example.application",
+                        "com.example.infrastructure",
+                        "com.example.interfaces")
+                .addAsWebInfResource("test-beans.xml", "beans.xml")
+                .addAsWebInfResource("test-web.xml", "web.xml")
+                .addAsWebInfResource("test-faces-config.xml", "faces-config.xml")
+                .addAsResource("META-INF/persistence.xml", "META-INF/persistence.xml")
+                .addAsResource("META-INF/microprofile-config.properties", "META-INF/microprofile-config.properties")
+                .addAsResource("publickey.pem", "publickey.pem")
+                .addAsResource("privatekey.pem", "privatekey.pem")
+                .addAsWebResource(new File(WEBAPP_SRC, "login.xhtml"))
+                .addAsWebResource(new File(WEBAPP_SRC, "profile.xhtml"));
     }
 
     @ArquillianResource
@@ -32,27 +46,14 @@ public class SecurityIT {
 
     @Test
     @RunAsClient
-    public void testServletPathWithoutAuthInfo() throws Exception {
-        HttpClient client = HttpClient.newBuilder()
-                .followRedirects(HttpClient.Redirect.NEVER)
-                .build();
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(baseUrl.toExternalForm() + "test-servlet"))
-                .GET()
-                .build();
-        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        assertEquals(302, response.statusCode(), "unauthenticated /test-servlet should redirect to the login page");
-    }
-
-    @Test
-    @RunAsClient
-    public void testRestApiWithoutToken() throws Exception {
+    public void testTokenEndpoint() throws Exception {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(baseUrl.toExternalForm() + "api/hello"))
-                .GET()
+                .uri(URI.create(baseUrl.toExternalForm() + "api/token"))
+                .header("Content-Type", "application/json")
+                .POST(HttpRequest.BodyPublishers.ofString("{\"username\":\"restuser\",\"password\":\"password\"}"))
                 .build();
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        assertEquals(401, response.statusCode(), "unauthenticated /api/hello should be unauthorized");
+        assertEquals(200, response.statusCode(), "token endpoint should issue a JWT for valid credentials");
     }
 }

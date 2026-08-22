@@ -1,4 +1,4 @@
-package com.example;
+package com.example.infrastructure.security;
 
 import jakarta.inject.Inject;
 import jakarta.interceptor.AroundInvoke;

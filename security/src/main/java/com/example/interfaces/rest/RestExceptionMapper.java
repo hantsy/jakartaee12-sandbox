@@ -1,5 +1,7 @@
-package com.example;
+package com.example.interfaces.rest;
 
+import com.example.infrastructure.security.ForbiddenException;
+import com.example.infrastructure.security.UnauthorizedException;
 import jakarta.security.enterprise.AuthenticationException;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.ext.ExceptionMapper;

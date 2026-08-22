@@ -1,5 +1,6 @@
-package com.example;
+package com.example.interfaces.faces;
 
+import com.example.infrastructure.security.Authenticated;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;

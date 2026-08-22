@@ -1,4 +1,4 @@
-package com.example;
+package com.example.infrastructure.security;
 
 import jakarta.annotation.Priority;
 import jakarta.enterprise.context.ApplicationScoped;
