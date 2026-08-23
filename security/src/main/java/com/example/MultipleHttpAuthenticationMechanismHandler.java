@@ -1,4 +1,4 @@
-package com.example.infrastructure.security;
+package com.example;
 
 import jakarta.annotation.Priority;
 import jakarta.enterprise.context.ApplicationScoped;
@@ -18,8 +18,8 @@ import java.util.logging.Logger;
 
 import static jakarta.interceptor.Interceptor.Priority.APPLICATION;
 
-// A single HttpAuthenticationMechanismHandler that dispatches between the
-// web (form) and REST (JWT) authentication mechanisms based on the request path.
+// Dispatches between the REST (JWT) and web (form) authentication mechanisms
+// based on the request path.
 @Alternative
 @Priority(APPLICATION)
 @ApplicationScoped

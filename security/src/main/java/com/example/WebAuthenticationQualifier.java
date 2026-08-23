@@ -1,4 +1,4 @@
-package com.example.infrastructure.security;
+package com.example;
 
 import jakarta.inject.Qualifier;
 
